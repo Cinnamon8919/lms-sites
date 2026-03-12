@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marie &amp; Pierre — 11 Juillet 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --terra: #C4714A;
+      --beige: #EDE5D8;
+      --sage: #7A9A6E;
+      --cream: #FAF7F2;
+      --dark: #2E2018;
+      --text: #5C4830;
+      --sand: #D4C5A9;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Raleway', sans-serif; color: var(--dark); background: var(--cream); }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      padding: 1.5rem 2rem; display: flex; justify-content: center;
+      gap: 2.5rem; transition: all 0.3s;
+    }
+    nav.scrolled {
+      background: rgba(250,247,242,0.97); backdrop-filter: blur(8px);
+      padding: 1rem 2rem; box-shadow: 0 2px 20px rgba(46,32,24,0.1);
+    }
+    nav a {
+      text-decoration: none; color: white; font-size: 0.72rem;
+      letter-spacing: 0.2em; text-transform: uppercase; font-weight: 400; transition: color 0.3s;
+    }
+    nav.scrolled a { color: var(--dark); }
+    nav a:hover { color: var(--terra); }
+
+    /* HERO */
+    .hero {
+      height: 100vh;
+      background: linear-gradient(rgba(20,12,5,0.42), rgba(20,12,5,0.42)),
+                  url('https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center; text-align: center; color: white; padding: 2rem;
+    }
+    .hero-eyebrow {
+      font-family: 'Raleway', sans-serif; font-size: 0.72rem;
+      letter-spacing: 0.42em; text-transform: uppercase; margin-bottom: 1.5rem; opacity: 0.82;
+    }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.8rem, 9.5vw, 7.5rem); font-weight: 300; line-height: 1;
+      font-style: italic; margin-bottom: 0.75rem;
+    }
+    .hero-date {
+      font-size: 0.78rem; letter-spacing: 0.28em; text-transform: uppercase;
+      margin-bottom: 3rem; opacity: 0.85;
+    }
+    .btn {
+      display: inline-block; padding: 1rem 2.8rem; border: 1px solid rgba(255,255,255,0.75);
+      color: white; text-decoration: none; font-size: 0.7rem;
+      letter-spacing: 0.25em; text-transform: uppercase; transition: all 0.35s;
+    }
+    .btn:hover { background: white; color: var(--dark); }
+
+    /* SECTIONS */
+    section { padding: 5.5rem 2rem; }
+    .container { max-width: 1000px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.65rem; letter-spacing: 0.42em; text-transform: uppercase;
+      color: var(--terra); margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 5.5vw, 3.5rem); font-weight: 400; line-height: 1.15;
+      margin-bottom: 1.5rem; color: var(--dark);
+    }
+    .divider { width: 55px; height: 1px; background: var(--terra); margin: 1.5rem auto; }
+    .divider-left { margin-left: 0; }
+
+    /* NOTRE HISTOIRE */
+    .histoire { background: white; }
+    .histoire-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: start; margin-top: 3rem;
+    }
+    .histoire-img { width: 100%; aspect-ratio: 4/5; object-fit: cover; }
+    .profiles { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
+    .profile-card { text-align: center; }
+    .profile-card img {
+      width: 100px; height: 100px; border-radius: 50%; object-fit: cover;
+      margin-bottom: 0.8rem; border: 3px solid var(--sand);
+    }
+    .profile-card h3 {
+      font-family: 'Cormorant Garamond', serif; font-size: 1.35rem;
+      font-weight: 400; margin-bottom: 0.4rem; font-style: italic;
+    }
+    .profile-card p { font-size: 0.87rem; line-height: 1.65; color: var(--text); }
+    .histoire-text p { font-size: 1rem; line-height: 1.9; color: var(--text); margin-bottom: 1rem; }
+
+    /* QUOTE */
+    .quote-section {
+      background: linear-gradient(rgba(30,18,8,0.55), rgba(30,18,8,0.55)),
+                  url('https://images.unsplash.com/photo-1444930694458-0a4e8e5c5a56?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat fixed;
+      color: white; text-align: center; padding: 6.5rem 2rem;
+    }
+    .quote-section blockquote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.4rem, 3.5vw, 2.1rem); font-style: italic;
+      font-weight: 300; line-height: 1.65; max-width: 680px; margin: 0 auto;
+    }
+    .quote-section cite {
+      display: block; font-family: 'Raleway', sans-serif; font-size: 0.75rem;
+      letter-spacing: 0.25em; margin-top: 1.5rem; opacity: 0.72; font-style: normal;
+      text-transform: uppercase;
+    }
+
+    /* PROGRAMME */
+    .programme { background: var(--beige); }
+    .programme-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 3rem; }
+    .prog-card {
+      background: white; padding: 2rem 1.5rem; text-align: center;
+      border-bottom: 3px solid var(--terra);
+    }
+    .prog-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .prog-time {
+      font-size: 0.65rem; letter-spacing: 0.3em; color: var(--terra);
+      text-transform: uppercase; margin-bottom: 0.5rem;
+    }
+    .prog-card h3 {
+      font-family: 'Cormorant Garamond', serif; font-size: 1.3rem;
+      font-weight: 400; margin-bottom: 0.75rem;
+    }
+    .prog-card p { font-size: 0.88rem; color: var(--text); line-height: 1.65; }
+
+    /* GALERIE */
+    .galerie { background: var(--cream); }
+    .gallery-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 0.6rem; margin-top: 3rem; }
+    .gallery-wrap { overflow: hidden; }
+    .gallery-grid img {
+      width: 100%; aspect-ratio: 1; object-fit: cover;
+      transition: transform 0.45s ease; display: block;
+    }
+    .gallery-grid img:hover { transform: scale(1.06); }
+    .gallery-note {
+      text-align: center; margin-top: 1.5rem; font-size: 0.9rem;
+      color: var(--text); font-style: italic;
+    }
+
+    /* COUNTDOWN */
+    .countdown { background: var(--dark); color: white; text-align: center; }
+    .countdown .section-title { color: var(--sand); }
+    .countdown-grid {
+      display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem;
+      margin: 3rem auto 0; max-width: 560px;
+    }
+    .countdown-item { display: flex; flex-direction: column; align-items: center; }
+    .countdown-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 7vw, 5rem); font-weight: 300; line-height: 1; color: var(--terra);
+    }
+    .countdown-label {
+      font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase;
+      margin-top: 0.5rem; opacity: 0.6;
+    }
+
+    /* RSVP */
+    .rsvp { background: white; }
+    .rsvp-form { max-width: 560px; margin: 3rem auto 0; }
+    .form-group { margin-bottom: 1.4rem; }
+    .form-group label {
+      display: block; font-size: 0.68rem; letter-spacing: 0.2em;
+      text-transform: uppercase; margin-bottom: 0.5rem; color: var(--dark);
+    }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%; padding: 0.9rem 1rem; border: 1px solid var(--sand);
+      background: var(--cream); font-family: 'Raleway', sans-serif; font-size: 0.95rem;
+      color: var(--dark); outline: none; transition: border-color 0.3s;
+      appearance: none;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      border-color: var(--terra);
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group textarea { height: 110px; resize: vertical; }
+    .form-submit {
+      width: 100%; padding: 1.1rem; background: var(--terra); color: white;
+      border: none; font-family: 'Raleway', sans-serif; font-size: 0.7rem;
+      letter-spacing: 0.28em; text-transform: uppercase; cursor: pointer;
+      transition: background 0.3s;
+    }
+    .form-submit:hover { background: var(--sage); }
+
+    /* FOOTER */
+    footer {
+      background: var(--dark); color: white; text-align: center; padding: 3.5rem 2rem;
+    }
+    footer h2 {
+      font-family: 'Cormorant Garamond', serif; font-size: 2.2rem;
+      font-weight: 300; font-style: italic; margin-bottom: 0.75rem;
+    }
+    footer p { font-size: 0.85rem; opacity: 0.7; margin-bottom: 0.4rem; line-height: 1.7; }
+    footer .credit {
+      margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.72rem; opacity: 0.5;
+    }
+    footer .credit a { color: var(--terra); text-decoration: none; }
+
+    /* ANIMATIONS */
+    .fade-in { opacity: 0; transform: translateY(28px); transition: opacity 0.75s ease, transform 0.75s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 768px) {
+      .histoire-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .histoire-img { display: none; }
+      .programme-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: repeat(2,1fr); }
+      .countdown-grid { grid-template-columns: repeat(2,1fr); gap: 1.5rem; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="navbar">
+    <a href="#histoire">Notre histoire</a>
+    <a href="#programme">Programme</a>
+    <a href="#galerie">Photos</a>
+    <a href="#rsvp">RSVP</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-eyebrow">Un mariage champêtre &amp; bohème</div>
+    <h1>Marie<br>&amp; Pierre</h1>
+    <div class="hero-date">Le 11 Juillet 2026 &nbsp;·&nbsp; Domaine du Moulin, Obernai</div>
+    <a href="#rsvp" class="btn">Confirmer votre présence</a>
+  </section>
+
+  <!-- NOTRE HISTOIRE -->
+  <section class="histoire" id="histoire">
+    <div class="container">
+      <div class="section-label">Deux âmes libres</div>
+      <h2 class="section-title">Notre histoire</h2>
+      <div class="divider divider-left"></div>
+      <div class="histoire-grid fade-in">
+        <img src="https://images.unsplash.com/photo-1606216794079-73e9e00f5e92?auto=format&fit=crop&w=700&q=80" alt="Marie &amp; Pierre" class="histoire-img">
+        <div>
+          <div class="profiles">
+            <div class="profile-card">
+              <img src="https://i.pravatar.cc/200?img=44" alt="Marie">
+              <h3>Marie</h3>
+              <p>Céramiste et jardinière du dimanche, attirée par tout ce qui est beau, simple et fait main.</p>
+            </div>
+            <div class="profile-card">
+              <img src="https://i.pravatar.cc/200?img=65" alt="Pierre">
+              <h3>Pierre</h3>
+              <p>Vigneron passionné, amoureux des terroirs d'Alsace et des couchers de soleil sur les vignes.</p>
+            </div>
+          </div>
+          <div class="histoire-text">
+            <p>Ils se sont rencontrés un dimanche de marché à Colmar. Elle vendait ses poteries, il cherchait un cadeau de vin pour ses parents. Il est reparti avec une carafe en grès — et son numéro.</p>
+            <p>Trois ans plus tard, après d'innombrables randonnées en Vosges, des vendanges partagées et un séjour en Toscane inoubliable, Pierre a demandé Marie en mariage au coucher du soleil, sur le promontoire du Château du Haut-Kœnigsbourg.</p>
+            <p>Le 11 juillet, dans les jardins du Domaine du Moulin, ils diront oui — simplement, sincèrement, entourés de vous.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE -->
+  <div class="quote-section">
+    <blockquote>
+      « La terre rit en fleurs. »
+    </blockquote>
+    <cite>— Ralph Waldo Emerson</cite>
+  </div>
+
+  <!-- PROGRAMME -->
+  <section class="programme" id="programme">
+    <div class="container" style="text-align:center">
+      <div class="section-label">La journée</div>
+      <h2 class="section-title">Programme</h2>
+      <div class="divider"></div>
+      <div class="programme-grid fade-in">
+        <div class="prog-card">
+          <div class="prog-icon">🌿</div>
+          <div class="prog-time">15h00</div>
+          <h3>Cérémonie laïque</h3>
+          <p>Sous le grand chêne du domaine, en plein air. Tenue bohème encouragée — talons déconseillés !</p>
+        </div>
+        <div class="prog-card">
+          <div class="prog-icon">🍷</div>
+          <div class="prog-time">17h00</div>
+          <h3>Cocktail dans les vignes</h3>
+          <p>Vins nature d'Alsace, planches de producteurs locaux, musique acoustique et photobooth 📸</p>
+        </div>
+        <div class="prog-card">
+          <div class="prog-icon">🔥</div>
+          <div class="prog-time">20h00</div>
+          <h3>Dîner &amp; feu de camp</h3>
+          <p>Tablées conviviales, menu du terroir en 4 services, et feu de camp sous les étoiles dès 23h</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALERIE -->
+  <section class="galerie" id="galerie">
+    <div class="container" style="text-align:center">
+      <div class="section-label">Nos moments</div>
+      <h2 class="section-title">Galerie photos</h2>
+      <div class="divider"></div>
+      <div class="gallery-grid fade-in">
+        <div class="gallery-wrap"><img src="https://picsum.photos/seed/mp1/600/600" alt="Galerie 1" loading="lazy"></div>
+        <div class="gallery-wrap"><img src="https://picsum.photos/seed/mp2/600/600" alt="Galerie 2" loading="lazy"></div>
+        <div class="gallery-wrap"><img src="https://picsum.photos/seed/mp3/600/600" alt="Galerie 3" loading="lazy"></div>
+        <div class="gallery-wrap"><img src="https://picsum.photos/seed/mp4/600/600" alt="Galerie 4" loading="lazy"></div>
+        <div class="gallery-wrap"><img src="https://picsum.photos/seed/mp5/600/600" alt="Galerie 5" loading="lazy"></div>
+        <div class="gallery-wrap"><img src="https://picsum.photos/seed/mp6/600/600" alt="Galerie 6" loading="lazy"></div>
+      </div>
+      <p class="gallery-note">📸 Vos photos du photobooth apparaîtront ici après la fête !</p>
+    </div>
+  </section>
+
+  <!-- COUNTDOWN -->
+  <section class="countdown">
+    <div class="container">
+      <div class="section-label" style="color:var(--terra)">On compte les jours</div>
+      <h2 class="section-title">Le grand jour approche</h2>
+      <div class="countdown-grid">
+        <div class="countdown-item">
+          <span class="countdown-number" id="days">--</span>
+          <span class="countdown-label">Jours</span>
+        </div>
+        <div class="countdown-item">
+          <span class="countdown-number" id="hours">--</span>
+          <span class="countdown-label">Heures</span>
+        </div>
+        <div class="countdown-item">
+          <span class="countdown-number" id="minutes">--</span>
+          <span class="countdown-label">Minutes</span>
+        </div>
+        <div class="countdown-item">
+          <span class="countdown-number" id="seconds">--</span>
+          <span class="countdown-label">Secondes</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RSVP -->
+  <section class="rsvp" id="rsvp">
+    <div class="container" style="text-align:center">
+      <div class="section-label">On vous attend !</div>
+      <h2 class="section-title">Confirmer votre présence</h2>
+      <div class="divider"></div>
+      <p style="color:var(--text);margin-bottom:0.5rem">Merci de nous répondre avant le <strong>1er mai 2026</strong></p>
+      <div id="rsvp-form-wrapper">
+        <form class="rsvp-form" onsubmit="handleRSVP(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Prénom</label>
+              <input type="text" placeholder="Lucie" required>
+            </div>
+            <div class="form-group">
+              <label>Nom</label>
+              <input type="text" placeholder="Martin" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" placeholder="lucie@exemple.fr" required>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Présence</label>
+              <select required>
+                <option value="">Sélectionner...</option>
+                <option>Oui, j'arrive ! 🌿</option>
+                <option>Non, malheureusement</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Nombre de convives</label>
+              <select>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4+</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Régime alimentaire</label>
+            <select>
+              <option>Omnivore</option>
+              <option>Végétarien</option>
+              <option>Végétalien</option>
+              <option>Sans gluten</option>
+              <option>Autre – préciser dans le message</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Un mot doux (optionnel)</label>
+            <textarea placeholder="Une chanson pour la playlist ? Un souvenir avec Marie ou Pierre ?"></textarea>
+          </div>
+          <button type="submit" class="form-submit">Envoyer ma réponse</button>
+          <p style="text-align:center;font-size:0.82rem;color:var(--text);margin-top:1rem">Date limite : 1er mai 2026</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <h2>Marie &amp; Pierre</h2>
+    <p>11 juillet 2026 &nbsp;·&nbsp; Domaine du Moulin, Obernai</p>
+    <p>Questions ? <a href="mailto:mariage@marie-pierre.fr" style="color:var(--terra)">mariage@marie-pierre.fr</a></p>
+    <div class="credit">
+      Site événementiel créé avec ♥ par <a href="https://lemomentsupreme.fr" target="_blank">Le Moment Suprême</a>
+    </div>
+  </footer>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 80); });
+
+    const target = new Date('2026-07-11T15:00:00');
+    function tick() {
+      const diff = target - new Date();
+      if (diff <= 0) { ['days','hours','minutes','seconds'].forEach(id => document.getElementById(id).textContent = '0'); return; }
+      document.getElementById('days').textContent = Math.floor(diff / 86400000);
+      document.getElementById('hours').textContent = String(Math.floor(diff % 86400000 / 3600000)).padStart(2,'0');
+      document.getElementById('minutes').textContent = String(Math.floor(diff % 3600000 / 60000)).padStart(2,'0');
+      document.getElementById('seconds').textContent = String(Math.floor(diff % 60000 / 1000)).padStart(2,'0');
+    }
+    tick(); setInterval(tick, 1000);
+
+    const io = new IntersectionObserver(e => e.forEach(el => { if(el.isIntersecting) el.target.classList.add('visible'); }), { threshold: 0.08 });
+    document.querySelectorAll('.fade-in').forEach(el => io.observe(el));
+
+    function handleRSVP(e) {
+      e.preventDefault();
+      document.getElementById('rsvp-form-wrapper').innerHTML =
+        '<div style="padding:3rem 1rem;text-align:center"><p style="font-family:\'Cormorant Garamond\',serif;font-size:2.2rem;color:var(--terra);font-style:italic;margin-bottom:1rem">Merci !</p><p style="color:var(--text);font-size:1rem;line-height:1.8">Votre réponse a bien été reçue. 🌿<br>On a hâte de partager cette belle journée avec vous !</p></div>';
+    }
+  </script>
+</body>
+</html>

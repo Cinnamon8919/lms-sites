@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sophie &amp; Thomas — 12 Septembre 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #FAF6F1;
+      --blush: #E8C4BF;
+      --gold: #C9A84C;
+      --rose: #B76E79;
+      --dark: #3D2B1F;
+      --text: #6B4C3B;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Lato', sans-serif; color: var(--dark); background: var(--cream); }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      padding: 1.5rem 2rem; display: flex; justify-content: center;
+      gap: 2.5rem; transition: all 0.3s ease;
+    }
+    nav.scrolled {
+      background: rgba(250,246,241,0.97); backdrop-filter: blur(8px);
+      padding: 1rem 2rem; box-shadow: 0 2px 20px rgba(61,43,31,0.08);
+    }
+    nav a {
+      text-decoration: none; color: white; font-size: 0.75rem;
+      letter-spacing: 0.18em; text-transform: uppercase; transition: color 0.3s;
+    }
+    nav.scrolled a { color: var(--dark); }
+    nav a:hover { color: var(--gold); }
+
+    /* HERO */
+    .hero {
+      height: 100vh;
+      background: linear-gradient(rgba(30,15,5,0.45), rgba(30,15,5,0.45)),
+                  url('https://images.unsplash.com/photo-1606216794079-73e9e00f5e92?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center; text-align: center; color: white; padding: 2rem;
+    }
+    .hero-eyebrow {
+      font-size: 0.72rem; letter-spacing: 0.35em; text-transform: uppercase;
+      margin-bottom: 1.5rem; opacity: 0.85;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3.5rem, 9vw, 7rem); font-weight: 400; line-height: 1.05;
+      margin-bottom: 1rem;
+    }
+    .hero-date {
+      font-size: 0.85rem; letter-spacing: 0.22em; text-transform: uppercase;
+      margin-bottom: 3rem; opacity: 0.88;
+    }
+    .btn {
+      display: inline-block; padding: 1rem 2.8rem; border: 1px solid rgba(255,255,255,0.8);
+      color: white; text-decoration: none; font-size: 0.72rem;
+      letter-spacing: 0.22em; text-transform: uppercase; transition: all 0.35s;
+    }
+    .btn:hover { background: white; color: var(--dark); }
+
+    /* SECTIONS */
+    section { padding: 5.5rem 2rem; }
+    .container { max-width: 1000px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.68rem; letter-spacing: 0.38em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3rem); font-weight: 400; line-height: 1.2;
+      margin-bottom: 1.5rem; color: var(--dark);
+    }
+    .divider { width: 55px; height: 1px; background: var(--gold); margin: 1.5rem auto; }
+    .divider-left { margin-left: 0; }
+
+    /* NOTRE HISTOIRE */
+    .histoire { background: white; }
+    .histoire-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: start; margin-top: 3rem;
+    }
+    .histoire-img {
+      width: 100%; aspect-ratio: 3/4; object-fit: cover;
+    }
+    .profiles {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem;
+    }
+    .profile-card { text-align: center; }
+    .profile-card img {
+      width: 100px; height: 100px; border-radius: 50%; object-fit: cover;
+      margin-bottom: 0.8rem; border: 3px solid var(--blush);
+    }
+    .profile-card h3 {
+      font-family: 'Playfair Display', serif; font-size: 1.25rem;
+      font-weight: 400; margin-bottom: 0.4rem;
+    }
+    .profile-card p { font-size: 0.88rem; line-height: 1.65; color: var(--text); }
+    .histoire-text p { font-size: 1rem; line-height: 1.9; color: var(--text); margin-bottom: 1rem; }
+
+    /* QUOTE */
+    .quote-section {
+      background: linear-gradient(rgba(40,20,10,0.58), rgba(40,20,10,0.58)),
+                  url('https://images.unsplash.com/photo-1550005809-91ad75fb315f?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat fixed;
+      color: white; text-align: center; padding: 6.5rem 2rem;
+    }
+    .quote-section blockquote {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.25rem, 3vw, 1.9rem); font-style: italic;
+      font-weight: 400; line-height: 1.65; max-width: 680px; margin: 0 auto;
+    }
+    .quote-section cite {
+      display: block; font-family: 'Lato', sans-serif; font-size: 0.78rem;
+      letter-spacing: 0.22em; margin-top: 1.5rem; opacity: 0.75; font-style: normal;
+      text-transform: uppercase;
+    }
+
+    /* PROGRAMME */
+    .programme { background: var(--cream); }
+    .timeline { position: relative; margin-top: 3rem; }
+    .timeline::before {
+      content: ''; position: absolute; left: 50%; transform: translateX(-50%);
+      width: 1px; height: 100%; background: var(--blush);
+    }
+    .timeline-item {
+      display: flex; justify-content: flex-end;
+      padding-right: calc(50% + 2.5rem); margin-bottom: 3rem; position: relative;
+    }
+    .timeline-item:nth-child(even) {
+      justify-content: flex-start; padding-right: 0; padding-left: calc(50% + 2.5rem);
+    }
+    .timeline-dot {
+      position: absolute; left: 50%; transform: translateX(-50%);
+      width: 11px; height: 11px; border-radius: 50%; background: var(--gold); top: 1.1rem;
+    }
+    .timeline-content {
+      background: white; padding: 1.5rem 1.75rem; max-width: 310px;
+      box-shadow: 0 3px 20px rgba(61,43,31,0.06);
+    }
+    .timeline-time {
+      font-size: 0.68rem; letter-spacing: 0.28em; color: var(--gold);
+      text-transform: uppercase; margin-bottom: 0.3rem;
+    }
+    .timeline-content h3 {
+      font-family: 'Playfair Display', serif; font-size: 1.15rem;
+      font-weight: 400; margin-bottom: 0.5rem;
+    }
+    .timeline-content p { font-size: 0.88rem; color: var(--text); line-height: 1.6; }
+
+    /* GALERIE */
+    .galerie { background: white; }
+    .gallery-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem; margin-top: 3rem;
+      overflow: hidden;
+    }
+    .gallery-grid img {
+      width: 100%; aspect-ratio: 1; object-fit: cover;
+      transition: transform 0.45s ease; display: block;
+    }
+    .gallery-grid img:hover { transform: scale(1.05); }
+    .gallery-wrap { overflow: hidden; }
+    .gallery-note {
+      text-align: center; margin-top: 1.5rem; font-size: 0.9rem;
+      color: var(--text); font-style: italic;
+    }
+
+    /* COUNTDOWN */
+    .countdown { background: var(--dark); color: white; text-align: center; }
+    .countdown .section-title { color: white; }
+    .countdown-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;
+      margin: 3rem auto 0; max-width: 560px;
+    }
+    .countdown-item { display: flex; flex-direction: column; align-items: center; }
+    .countdown-number {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 400; line-height: 1; color: var(--gold);
+    }
+    .countdown-label {
+      font-size: 0.62rem; letter-spacing: 0.28em; text-transform: uppercase;
+      margin-top: 0.5rem; opacity: 0.65;
+    }
+
+    /* RSVP */
+    .rsvp { background: var(--cream); }
+    .rsvp-form { max-width: 560px; margin: 3rem auto 0; }
+    .form-group { margin-bottom: 1.4rem; }
+    .form-group label {
+      display: block; font-size: 0.7rem; letter-spacing: 0.18em;
+      text-transform: uppercase; margin-bottom: 0.5rem; color: var(--dark);
+    }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%; padding: 0.85rem 1rem; border: 1px solid #E2D9D2;
+      background: white; font-family: 'Lato', sans-serif; font-size: 0.95rem;
+      color: var(--dark); outline: none; transition: border-color 0.3s;
+      appearance: none;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      border-color: var(--gold);
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group textarea { height: 110px; resize: vertical; }
+    .form-submit {
+      width: 100%; padding: 1.1rem; background: var(--gold); color: white;
+      border: none; font-family: 'Lato', sans-serif; font-size: 0.72rem;
+      letter-spacing: 0.28em; text-transform: uppercase; cursor: pointer;
+      transition: background 0.3s; margin-top: 0.5rem;
+    }
+    .form-submit:hover { background: var(--rose); }
+    .form-success {
+      text-align: center; padding: 3rem 1rem;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--dark); color: white; text-align: center; padding: 3.5rem 2rem;
+    }
+    footer h2 {
+      font-family: 'Playfair Display', serif; font-size: 2rem;
+      font-weight: 400; margin-bottom: 0.75rem;
+    }
+    footer p { font-size: 0.85rem; opacity: 0.7; margin-bottom: 0.4rem; line-height: 1.7; }
+    footer .credit {
+      margin-top: 2rem; padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.72rem; opacity: 0.5; letter-spacing: 0.08em;
+    }
+    footer .credit a { color: var(--gold); text-decoration: none; }
+
+    /* ANIMATIONS */
+    .fade-in { opacity: 0; transform: translateY(28px); transition: opacity 0.75s ease, transform 0.75s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { gap: 1.3rem; }
+      .histoire-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .histoire-img { display: none; }
+      .timeline::before { left: 1.2rem; }
+      .timeline-item { padding-right: 0; padding-left: 3.5rem; justify-content: flex-start; }
+      .timeline-item:nth-child(even) { padding-left: 3.5rem; }
+      .timeline-dot { left: 1.2rem; }
+      .timeline-content { max-width: 100%; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .countdown-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="navbar">
+    <a href="#histoire">Notre histoire</a>
+    <a href="#programme">Programme</a>
+    <a href="#galerie">Photos</a>
+    <a href="#rsvp">RSVP</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-eyebrow">Nous nous marions</div>
+    <h1>Sophie<br>&amp; Thomas</h1>
+    <div class="hero-date">Le 12 Septembre 2026 &nbsp;·&nbsp; Château de l'Île, Ostwald</div>
+    <a href="#rsvp" class="btn">Confirmer votre présence</a>
+  </section>
+
+  <!-- NOTRE HISTOIRE -->
+  <section class="histoire" id="histoire">
+    <div class="container">
+      <div class="section-label">Nos chemins se sont croisés</div>
+      <h2 class="section-title">Notre histoire</h2>
+      <div class="divider divider-left"></div>
+      <div class="histoire-grid fade-in">
+        <img src="https://images.unsplash.com/photo-1519741497674-611f49fcb9c1?auto=format&fit=crop&w=700&q=80" alt="Sophie &amp; Thomas" class="histoire-img">
+        <div>
+          <div class="profiles">
+            <div class="profile-card">
+              <img src="https://i.pravatar.cc/200?img=47" alt="Sophie">
+              <h3>Sophie</h3>
+              <p>Avocate passionnée, amoureuse de voyages lointains et de dîners qui s'éternisent.</p>
+            </div>
+            <div class="profile-card">
+              <img src="https://i.pravatar.cc/200?img=68" alt="Thomas">
+              <h3>Thomas</h3>
+              <p>Architecte dans l'âme, convaincu que la beauté se cache dans les moindres détails.</p>
+            </div>
+          </div>
+          <div class="histoire-text">
+            <p>Tout a commencé il y a cinq ans, lors d'un séminaire à Sciences Po Strasbourg. Lui regardait par la fenêtre, elle l'a interpellé pour lui emprunter un stylo. Ce stylo ne lui a jamais été rendu.</p>
+            <p>Depuis, nous avons parcouru ensemble trois continents, adopté un chat prénommé Brie, et appris que les disputes sur l'organisation des placards peuvent coexister avec un amour profond.</p>
+            <p>Ce 12 septembre, nous voulons célébrer tout cela avec les personnes qui comptent le plus pour nous — <em>vous</em>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE -->
+  <div class="quote-section">
+    <blockquote>
+      « Aimer, ce n'est pas se regarder l'un l'autre, c'est regarder ensemble dans la même direction. »
+    </blockquote>
+    <cite>— Antoine de Saint-Exupéry</cite>
+  </div>
+
+  <!-- PROGRAMME -->
+  <section class="programme" id="programme">
+    <div class="container" style="text-align:center">
+      <div class="section-label">Le grand jour</div>
+      <h2 class="section-title">Programme de la journée</h2>
+      <div class="divider"></div>
+      <div class="timeline fade-in">
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-time">11h00</div>
+            <h3>Cérémonie civile</h3>
+            <p>Mairie d'Ostwald<br>Place de la Mairie, Ostwald</p>
+          </div>
+          <div class="timeline-dot"></div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-time">14h00</div>
+            <h3>Vin d'honneur</h3>
+            <p>Château de l'Île<br>Jardins et terrasses extérieures</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-time">19h00</div>
+            <h3>Dîner de gala</h3>
+            <p>Grande salle du château<br>Menu gastronomique en 5 services</p>
+          </div>
+          <div class="timeline-dot"></div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-time">21h30</div>
+            <h3>Soirée dansante</h3>
+            <p>Piste de danse et photobooth<br>Ambiance garantie jusqu'à l'aube ✨</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALERIE -->
+  <section class="galerie" id="galerie">
+    <div class="container" style="text-align:center">
+      <div class="section-label">Nos souvenirs</div>
+      <h2 class="section-title">Galerie photos</h2>
+      <div class="divider"></div>
+      <div class="gallery-grid fade-in">
+        <div class="gallery-wrap"><img src="https://picsum.photos/seed/st1/600/600" alt="Galerie 1" loading="lazy"></div>
+        <div class="gallery-wrap"><img src="https://picsum.photos/seed/st2/600/600" alt="Galerie 2" loading="lazy"></div>
+        <div class="gallery-wrap"><img src="https://picsum.photos/seed/st3/600/600" alt="Galerie 3" loading="lazy"></div>
+        <div class="gallery-wrap"><img src="https://picsum.photos/seed/st4/600/600" alt="Galerie 4" loading="lazy"></div>
+        <div class="gallery-wrap"><img src="https://picsum.photos/seed/st5/600/600" alt="Galerie 5" loading="lazy"></div>
+        <div class="gallery-wrap"><img src="https://picsum.photos/seed/st6/600/600" alt="Galerie 6" loading="lazy"></div>
+      </div>
+      <p class="gallery-note">📸 Vos photos photobooth apparaîtront ici après la soirée !</p>
+    </div>
+  </section>
+
+  <!-- COMPTE À REBOURS -->
+  <section class="countdown">
+    <div class="container">
+      <div class="section-label" style="color:var(--gold)">Plus que</div>
+      <h2 class="section-title">Le grand jour approche</h2>
+      <div class="countdown-grid">
+        <div class="countdown-item">
+          <span class="countdown-number" id="days">--</span>
+          <span class="countdown-label">Jours</span>
+        </div>
+        <div class="countdown-item">
+          <span class="countdown-number" id="hours">--</span>
+          <span class="countdown-label">Heures</span>
+        </div>
+        <div class="countdown-item">
+          <span class="countdown-number" id="minutes">--</span>
+          <span class="countdown-label">Minutes</span>
+        </div>
+        <div class="countdown-item">
+          <span class="countdown-number" id="seconds">--</span>
+          <span class="countdown-label">Secondes</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RSVP -->
+  <section class="rsvp" id="rsvp">
+    <div class="container" style="text-align:center">
+      <div class="section-label">Rejoignez-nous</div>
+      <h2 class="section-title">Confirmer votre présence</h2>
+      <div class="divider"></div>
+      <p style="color:var(--text);margin-bottom:0.5rem">Merci de nous répondre avant le <strong>1er juillet 2026</strong></p>
+      <div id="rsvp-form-wrapper">
+        <form class="rsvp-form" onsubmit="handleRSVP(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Prénom</label>
+              <input type="text" placeholder="Marie" required>
+            </div>
+            <div class="form-group">
+              <label>Nom</label>
+              <input type="text" placeholder="Dupont" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Adresse email</label>
+            <input type="email" placeholder="marie@exemple.fr" required>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Présence</label>
+              <select required>
+                <option value="">Sélectionner...</option>
+                <option>Oui, avec joie ! 🎉</option>
+                <option>Non, malheureusement</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Nombre de personnes</label>
+              <select>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4+</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Préférence alimentaire</label>
+            <select>
+              <option>Pas de restriction</option>
+              <option>Végétarien</option>
+              <option>Végétalien</option>
+              <option>Sans gluten</option>
+              <option>Allergie – je précise dans le message</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Un mot pour les mariés (optionnel)</label>
+            <textarea placeholder="Un message, une chanson à mettre à l'honneur..."></textarea>
+          </div>
+          <button type="submit" class="form-submit">Envoyer ma réponse</button>
+          <p style="text-align:center;font-size:0.82rem;color:var(--text);margin-top:1rem">Date limite : 1er juillet 2026</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <h2>Sophie &amp; Thomas</h2>
+    <p>12 septembre 2026 &nbsp;·&nbsp; Château de l'Île, Ostwald</p>
+    <p>Questions ? <a href="mailto:mariage@sophie-thomas.fr" style="color:var(--gold)">mariage@sophie-thomas.fr</a></p>
+    <div class="credit">
+      Site événementiel créé avec ♥ par <a href="https://lemomentsupreme.fr" target="_blank">Le Moment Suprême</a>
+    </div>
+  </footer>
+
+  <script>
+    // NAV SCROLL
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 80);
+    });
+
+    // COUNTDOWN
+    const target = new Date('2026-09-12T11:00:00');
+    function tick() {
+      const diff = target - new Date();
+      if (diff <= 0) { ['days','hours','minutes','seconds'].forEach(id => document.getElementById(id).textContent = '0'); return; }
+      document.getElementById('days').textContent = Math.floor(diff / 86400000);
+      document.getElementById('hours').textContent = String(Math.floor(diff % 86400000 / 3600000)).padStart(2,'0');
+      document.getElementById('minutes').textContent = String(Math.floor(diff % 3600000 / 60000)).padStart(2,'0');
+      document.getElementById('seconds').textContent = String(Math.floor(diff % 60000 / 1000)).padStart(2,'0');
+    }
+    tick(); setInterval(tick, 1000);
+
+    // FADE IN
+    const io = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.08 });
+    document.querySelectorAll('.fade-in').forEach(el => io.observe(el));
+
+    // RSVP
+    function handleRSVP(e) {
+      e.preventDefault();
+      document.getElementById('rsvp-form-wrapper').innerHTML =
+        '<div class="form-success"><p style="font-family:\'Playfair Display\',serif;font-size:2rem;color:var(--gold);margin-bottom:1rem">Merci !</p><p style="color:var(--text);font-size:1rem;line-height:1.8">Votre réponse a bien été enregistrée. 🎊<br>Nous avons hâte de vous retrouver le 12 septembre !</p></div>';
+    }
+  </script>
+</body>
+</html>

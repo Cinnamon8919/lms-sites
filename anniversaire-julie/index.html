@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Julie fête ses 30 ans — 23 Mai 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Dancing+Script:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --gold: #C9956C;
+      --champagne: #F7E7CE;
+      --blush: #E8B4BC;
+      --dark: #1A1A2E;
+      --text: #4A3728;
+      --bg: #FDFAF5;
+      --accent: #8B6F5E;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Montserrat', sans-serif; color: var(--dark); background: var(--bg); }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      padding: 1.5rem 2rem; display: flex; justify-content: center;
+      gap: 2.5rem; transition: all 0.3s;
+    }
+    nav.scrolled {
+      background: rgba(253,250,245,0.97); backdrop-filter: blur(8px);
+      padding: 1rem 2rem; box-shadow: 0 2px 20px rgba(26,26,46,0.08);
+    }
+    nav a {
+      text-decoration: none; color: white; font-size: 0.72rem;
+      letter-spacing: 0.2em; text-transform: uppercase; font-weight: 400; transition: color 0.3s;
+    }
+    nav.scrolled a { color: var(--dark); }
+    nav a:hover { color: var(--gold); }
+
+    /* HERO */
+    .hero {
+      height: 100vh;
+      background: linear-gradient(rgba(26,26,46,0.55), rgba(26,26,46,0.55)),
+                  url('https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center; text-align: center; color: white; padding: 2rem;
+    }
+    .hero-eyebrow {
+      font-size: 0.72rem; letter-spacing: 0.42em; text-transform: uppercase;
+      margin-bottom: 1rem; opacity: 0.82; font-weight: 300;
+    }
+    .hero-age {
+      font-family: 'Dancing Script', cursive; font-size: clamp(5rem, 15vw, 12rem);
+      font-weight: 600; line-height: 1; color: var(--champagne); margin-bottom: -0.5rem;
+      opacity: 0.92;
+    }
+    .hero h1 {
+      font-family: 'Montserrat', sans-serif; font-weight: 300;
+      font-size: clamp(2rem, 6vw, 4rem); letter-spacing: 0.15em;
+      text-transform: uppercase; line-height: 1.2; margin-bottom: 1.5rem;
+    }
+    .hero-date {
+      font-size: 0.78rem; letter-spacing: 0.28em; text-transform: uppercase;
+      margin-bottom: 3rem; opacity: 0.82; font-weight: 300;
+    }
+    .btn {
+      display: inline-block; padding: 1rem 2.8rem; border: 1px solid rgba(255,255,255,0.75);
+      color: white; text-decoration: none; font-size: 0.7rem;
+      letter-spacing: 0.25em; text-transform: uppercase; transition: all 0.35s;
+    }
+    .btn:hover { background: white; color: var(--dark); }
+
+    /* SECTIONS */
+    section { padding: 5.5rem 2rem; }
+    .container { max-width: 980px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.65rem; letter-spacing: 0.42em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-family: 'Dancing Script', cursive; font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 600; line-height: 1.15; margin-bottom: 1.5rem; color: var(--dark);
+    }
+    .divider { width: 55px; height: 2px; background: var(--gold); margin: 1.5rem auto; }
+    .divider-left { margin-left: 0; }
+
+    /* À PROPOS */
+    .apropos { background: white; }
+    .apropos-grid {
+      display: grid; grid-template-columns: 1fr 1.2fr; gap: 4rem;
+      align-items: center; margin-top: 3rem;
+    }
+    .apropos-img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 4px; }
+    .apropos-text p {
+      font-size: 1rem; line-height: 1.9; color: var(--text); margin-bottom: 1rem; font-weight: 300;
+    }
+    .fun-facts {
+      display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem;
+    }
+    .fun-fact {
+      background: var(--champagne); padding: 0.5rem 1.1rem;
+      font-size: 0.82rem; color: var(--text); font-weight: 400;
+    }
+
+    /* PROGRAMME */
+    .programme { background: var(--champagne); }
+    .programme-steps { margin-top: 3rem; display: flex; flex-direction: column; gap: 0; }
+    .step {
+      display: flex; align-items: stretch; gap: 0;
+    }
+    .step-time-col {
+      width: 110px; flex-shrink: 0; display: flex; flex-direction: column;
+      align-items: flex-end; padding: 1.5rem 1.5rem 1.5rem 0;
+    }
+    .step-time {
+      font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--gold); font-weight: 600; white-space: nowrap;
+    }
+    .step-line {
+      width: 1px; background: var(--gold); flex: 1; margin: 0.5rem 0 0 auto;
+      min-height: 20px;
+    }
+    .step-dot-col {
+      width: 14px; flex-shrink: 0; display: flex; flex-direction: column;
+      align-items: center; padding-top: 1.6rem;
+    }
+    .step-dot {
+      width: 10px; height: 10px; border-radius: 50%; background: var(--gold); flex-shrink: 0;
+    }
+    .step-content-col {
+      flex: 1; padding: 1.25rem 0 1.25rem 1.5rem;
+    }
+    .step-content-col h3 {
+      font-size: 1.05rem; font-weight: 600; margin-bottom: 0.3rem; color: var(--dark);
+    }
+    .step-content-col p { font-size: 0.88rem; color: var(--text); line-height: 1.6; font-weight: 300; }
+
+    /* GALERIE */
+    .galerie { background: var(--bg); }
+    .gallery-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 0.6rem; margin-top: 3rem; }
+    .gallery-wrap { overflow: hidden; }
+    .gallery-grid img {
+      width: 100%; aspect-ratio: 1; object-fit: cover;
+      transition: transform 0.45s ease; display: block;
+    }
+    .gallery-grid img:hover { transform: scale(1.06); }
+    .gallery-note {
+      text-align: center; margin-top: 1.5rem; font-size: 0.88rem;
+      color: var(--text); font-style: italic; font-weight: 300;
+    }
+
+    /* COUNTDOWN */
+    .countdown { background: var(--dark); color: white; text-align: center; }
+    .countdown .section-title { color: var(--champagne); }
+    .countdown-grid {
+      display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem;
+      margin: 3rem auto 0; max-width: 540px;
+    }
+    .countdown-item { display: flex; flex-direction: column; align-items: center; }
+    .countdown-number {
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(3rem, 7vw, 5.5rem); font-weight: 600; line-height: 1; color: var(--gold);
+    }
+    .countdown-label {
+      font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase;
+      margin-top: 0.4rem; opacity: 0.6;
+    }
+
+    /* RSVP */
+    .rsvp { background: white; }
+    .rsvp-form { max-width: 560px; margin: 3rem auto 0; }
+    .form-group { margin-bottom: 1.4rem; }
+    .form-group label {
+      display: block; font-size: 0.68rem; letter-spacing: 0.2em;
+      text-transform: uppercase; margin-bottom: 0.5rem; font-weight: 500;
+    }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%; padding: 0.9rem 1rem; border: 1px solid #E8DDD5;
+      background: var(--bg); font-family: 'Montserrat', sans-serif; font-size: 0.92rem;
+      font-weight: 300; color: var(--dark); outline: none; transition: border-color 0.3s;
+      appearance: none;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      border-color: var(--gold);
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group textarea { height: 110px; resize: vertical; }
+    .form-submit {
+      width: 100%; padding: 1.1rem; background: var(--gold); color: white;
+      border: none; font-family: 'Montserrat', sans-serif; font-size: 0.7rem; font-weight: 500;
+      letter-spacing: 0.28em; text-transform: uppercase; cursor: pointer;
+      transition: background 0.3s;
+    }
+    .form-submit:hover { background: var(--dark); }
+
+    /* FOOTER */
+    footer { background: var(--dark); color: white; text-align: center; padding: 3.5rem 2rem; }
+    footer h2 {
+      font-family: 'Dancing Script', cursive; font-size: 2.5rem;
+      font-weight: 600; margin-bottom: 0.75rem; color: var(--champagne);
+    }
+    footer p { font-size: 0.85rem; opacity: 0.7; margin-bottom: 0.4rem; line-height: 1.7; font-weight: 300; }
+    footer .credit {
+      margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.72rem; opacity: 0.5;
+    }
+    footer .credit a { color: var(--gold); text-decoration: none; }
+
+    .fade-in { opacity: 0; transform: translateY(28px); transition: opacity 0.75s ease, transform 0.75s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 768px) {
+      .apropos-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .apropos-img { display: none; }
+      .gallery-grid { grid-template-columns: repeat(2,1fr); }
+      .countdown-grid { grid-template-columns: repeat(2,1fr); gap: 1.5rem; }
+      .form-row { grid-template-columns: 1fr; }
+      .step-time-col { width: 80px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="navbar">
+    <a href="#apropos">Julie</a>
+    <a href="#programme">Programme</a>
+    <a href="#galerie">Photos</a>
+    <a href="#rsvp">RSVP</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-eyebrow">Une soirée pour célébrer</div>
+    <div class="hero-age">30</div>
+    <h1>L'anniversaire de Julie</h1>
+    <div class="hero-date">Le 23 Mai 2026 &nbsp;·&nbsp; Rooftop Latitude, Strasbourg</div>
+    <a href="#rsvp" class="btn">Je viens fêter ça !</a>
+  </section>
+
+  <!-- À PROPOS -->
+  <section class="apropos" id="apropos">
+    <div class="container">
+      <div class="section-label">Trente bougies</div>
+      <h2 class="section-title">Julie, 30 ans</h2>
+      <div class="divider divider-left"></div>
+      <div class="apropos-grid fade-in">
+        <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80" alt="Julie" class="apropos-img">
+        <div>
+          <div class="apropos-text">
+            <p>Trente ans. Julie les aborde avec la même énergie qu'elle a toujours mise dans tout : à fond, avec le sourire, et avec une playlist déjà prête.</p>
+            <p>Graphiste indépendante de jour, exploratrice de restaurants le week-end, et experte autoproclamée en rosé et en brunchs tardifs — elle mérite une fête à la hauteur de son caractère.</p>
+            <p>Ce soir, pas de discours interminables. Juste une belle nuit sur les toits de Strasbourg, avec les gens qu'elle aime.</p>
+          </div>
+          <div class="fun-facts">
+            <span class="fun-fact">🌍 12 pays visités</span>
+            <span class="fun-fact">☕ 3 expressos/jour</span>
+            <span class="fun-fact">📚 74 livres lus</span>
+            <span class="fun-fact">🎨 Graphiste depuis 7 ans</span>
+            <span class="fun-fact">🐈 Maman de Figaro</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRAMME -->
+  <section class="programme" id="programme">
+    <div class="container" style="text-align:center">
+      <div class="section-label">La soirée</div>
+      <h2 class="section-title">Au programme</h2>
+      <div class="divider"></div>
+      <div class="programme-steps fade-in" style="max-width:600px;margin:3rem auto 0;text-align:left">
+        <div class="step">
+          <div class="step-time-col"><span class="step-time">19h00</span><div class="step-line"></div></div>
+          <div class="step-dot-col"><div class="step-dot"></div></div>
+          <div class="step-content-col">
+            <h3>Arrivée &amp; apéritif</h3>
+            <p>Accueil sur le rooftop, cocktails de bienvenue et vue imprenable sur la cathédrale au coucher du soleil.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-time-col"><span class="step-time">20h30</span><div class="step-line"></div></div>
+          <div class="step-dot-col"><div class="step-dot"></div></div>
+          <div class="step-content-col">
+            <h3>Dîner en terrasse</h3>
+            <p>Buffet dînatoire avec produits locaux et saisonniers. Discours (courts, promis) et gâteau d'anniversaire surprise.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-time-col"><span class="step-time">22h00</span><div class="step-line"></div></div>
+          <div class="step-dot-col"><div class="step-dot"></div></div>
+          <div class="step-content-col">
+            <h3>Soirée dansante</h3>
+            <p>Playlist curatée par Julie herself. Photobooth ouvert toute la nuit pour garder vos plus beaux souvenirs. 📸✨</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-time-col"><span class="step-time">03h00</span></div>
+          <div class="step-dot-col"><div class="step-dot"></div></div>
+          <div class="step-content-col">
+            <h3>Fin de la soirée</h3>
+            <p>Pour ceux qui ont encore de l'énergie — after dans un bar du centre à déterminer le soir même !</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALERIE -->
+  <section class="galerie" id="galerie">
+    <div class="container" style="text-align:center">
+      <div class="section-label">Nos souvenirs ensemble</div>
+      <h2 class="section-title">Galerie</h2>
+      <div class="divider"></div>
+      <div class="gallery-grid fade-in">
+        <div class="gallery-wrap"><img src="https://picsum.photos/seed/jl1/600/600" alt="Galerie 1" loading="lazy"></div>
+        <div class="gallery-wrap"><img src="https://picsum.photos/seed/jl2/600/600" alt="Galerie 2" loading="lazy"></div>
+        <div class="gallery-wrap"><img src="https://picsum.photos/seed/jl3/600/600" alt="Galerie 3" loading="lazy"></div>
+        <div class="gallery-wrap"><img src="https://picsum.photos/seed/jl4/600/600" alt="Galerie 4" loading="lazy"></div>
+        <div class="gallery-wrap"><img src="https://picsum.photos/seed/jl5/600/600" alt="Galerie 5" loading="lazy"></div>
+        <div class="gallery-wrap"><img src="https://picsum.photos/seed/jl6/600/600" alt="Galerie 6" loading="lazy"></div>
+      </div>
+      <p class="gallery-note">📸 Les photos du photobooth de la soirée apparaîtront ici !</p>
+    </div>
+  </section>
+
+  <!-- COUNTDOWN -->
+  <section class="countdown">
+    <div class="container">
+      <div class="section-label" style="color:var(--gold)">Sortez les confettis</div>
+      <h2 class="section-title">La soirée approche</h2>
+      <div class="countdown-grid">
+        <div class="countdown-item">
+          <span class="countdown-number" id="days">--</span>
+          <span class="countdown-label">Jours</span>
+        </div>
+        <div class="countdown-item">
+          <span class="countdown-number" id="hours">--</span>
+          <span class="countdown-label">Heures</span>
+        </div>
+        <div class="countdown-item">
+          <span class="countdown-number" id="minutes">--</span>
+          <span class="countdown-label">Minutes</span>
+        </div>
+        <div class="countdown-item">
+          <span class="countdown-number" id="seconds">--</span>
+          <span class="countdown-label">Secondes</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RSVP -->
+  <section class="rsvp" id="rsvp">
+    <div class="container" style="text-align:center">
+      <div class="section-label">On vous attend</div>
+      <h2 class="section-title">Je viens !</h2>
+      <div class="divider"></div>
+      <p style="color:var(--text);font-weight:300;margin-bottom:0.5rem">Merci de confirmer avant le <strong>1er mai 2026</strong> — les places sont limitées</p>
+      <div id="rsvp-form-wrapper">
+        <form class="rsvp-form" onsubmit="handleRSVP(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Prénom</label>
+              <input type="text" placeholder="Lucas" required>
+            </div>
+            <div class="form-group">
+              <label>Nom</label>
+              <input type="text" placeholder="Moreau" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" placeholder="lucas@exemple.fr" required>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Présence</label>
+              <select required>
+                <option value="">Sélectionner...</option>
+                <option>Oui, j'arrive ! 🥂</option>
+                <option>Non, dommage...</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Nombre de personnes</label>
+              <select>
+                <option>1</option>
+                <option>2</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Régime alimentaire</label>
+            <select>
+              <option>Omnivore</option>
+              <option>Végétarien</option>
+              <option>Végétalien</option>
+              <option>Sans gluten</option>
+              <option>Autre – préciser dans le message</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Une chanson pour la playlist ? (optionnel)</label>
+            <textarea placeholder="Titre + artiste — Julie lira tous les messages 😄"></textarea>
+          </div>
+          <button type="submit" class="form-submit">Confirmer ma présence 🎉</button>
+          <p style="text-align:center;font-size:0.82rem;color:var(--text);margin-top:1rem;font-weight:300">Date limite : 1er mai 2026</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <h2>Joyeux 30 ans, Julie ! 🎂</h2>
+    <p>23 mai 2026 &nbsp;·&nbsp; Rooftop Latitude, Strasbourg</p>
+    <p>Questions ? <a href="mailto:anniversaire-julie@gmail.com" style="color:var(--gold)">anniversaire-julie@gmail.com</a></p>
+    <div class="credit">
+      Site événementiel créé avec ♥ par <a href="https://lemomentsupreme.fr" target="_blank">Le Moment Suprême</a>
+    </div>
+  </footer>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 80); });
+
+    const target = new Date('2026-05-23T19:00:00');
+    function tick() {
+      const diff = target - new Date();
+      if (diff <= 0) { ['days','hours','minutes','seconds'].forEach(id => document.getElementById(id).textContent = '0'); return; }
+      document.getElementById('days').textContent = Math.floor(diff / 86400000);
+      document.getElementById('hours').textContent = String(Math.floor(diff % 86400000 / 3600000)).padStart(2,'0');
+      document.getElementById('minutes').textContent = String(Math.floor(diff % 3600000 / 60000)).padStart(2,'0');
+      document.getElementById('seconds').textContent = String(Math.floor(diff % 60000 / 1000)).padStart(2,'0');
+    }
+    tick(); setInterval(tick, 1000);
+
+    const io = new IntersectionObserver(e => e.forEach(el => { if(el.isIntersecting) el.target.classList.add('visible'); }), { threshold: 0.08 });
+    document.querySelectorAll('.fade-in').forEach(el => io.observe(el));
+
+    function handleRSVP(e) {
+      e.preventDefault();
+      document.getElementById('rsvp-form-wrapper').innerHTML =
+        '<div style="padding:3rem 1rem;text-align:center"><p style="font-family:\'Dancing Script\',cursive;font-size:2.5rem;color:var(--gold);margin-bottom:1rem">Top !</p><p style="color:var(--text);font-size:1rem;line-height:1.8;font-weight:300">Votre réponse a bien été enregistrée. 🎊<br>Julie vous réserve une soirée inoubliable !</p></div>';
+    }
+  </script>
+</body>
+</html>
