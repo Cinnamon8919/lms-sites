@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bienvenue Camille — Baptême 14 Juin 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Nunito:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue: #A8C5DA;
+      --lilac: #C8B5D4;
+      --softblue: #E8F2F8;
+      --white: #FAFCFE;
+      --dark: #2D3A4A;
+      --text: #4A5C6E;
+      --accent: #8AADCA;
+      --pale: #F0F4F8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Nunito', sans-serif; color: var(--dark); background: var(--white); }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      padding: 1.5rem 2rem; display: flex; justify-content: center;
+      gap: 2.5rem; transition: all 0.3s;
+    }
+    nav.scrolled {
+      background: rgba(250,252,254,0.97); backdrop-filter: blur(8px);
+      padding: 1rem 2rem; box-shadow: 0 2px 20px rgba(45,58,74,0.08);
+    }
+    nav a {
+      text-decoration: none; color: white; font-size: 0.72rem;
+      letter-spacing: 0.2em; text-transform: uppercase; font-weight: 400; transition: color 0.3s;
+    }
+    nav.scrolled a { color: var(--dark); }
+    nav a:hover { color: var(--accent); }
+
+    /* HERO */
+    .hero {
+      height: 100vh;
+      background: linear-gradient(rgba(45,58,74,0.38), rgba(45,58,74,0.38)),
+                  url('https://images.unsplash.com/photo-1555252333-9f8e92e65df9?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center; text-align: center; color: white; padding: 2rem;
+    }
+    .hero-eyebrow {
+      font-size: 0.72rem; letter-spacing: 0.42em; text-transform: uppercase;
+      margin-bottom: 1.5rem; opacity: 0.85; font-weight: 300;
+    }
+    .hero h1 {
+      font-family: 'Gilda Display', serif;
+      font-size: clamp(3rem, 9vw, 7rem); font-weight: 400; line-height: 1.05;
+      margin-bottom: 0.75rem;
+    }
+    .hero-sub {
+      font-size: clamp(1rem, 3vw, 1.5rem); font-weight: 300;
+      letter-spacing: 0.08em; margin-bottom: 1rem; opacity: 0.88;
+    }
+    .hero-date {
+      font-size: 0.78rem; letter-spacing: 0.28em; text-transform: uppercase;
+      margin-bottom: 3rem; opacity: 0.82; font-weight: 300;
+    }
+    .btn {
+      display: inline-block; padding: 1rem 2.8rem; border: 1px solid rgba(255,255,255,0.75);
+      color: white; text-decoration: none; font-size: 0.7rem;
+      letter-spacing: 0.25em; text-transform: uppercase; transition: all 0.35s;
+    }
+    .btn:hover { background: white; color: var(--dark); }
+
+    /* SECTIONS */
+    section { padding: 5.5rem 2rem; }
+    .container { max-width: 980px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.65rem; letter-spacing: 0.42em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-family: 'Gilda Display', serif;
+      font-size: clamp(2rem, 5.5vw, 3.2rem); font-weight: 400; line-height: 1.2;
+      margin-bottom: 1.5rem; color: var(--dark);
+    }
+    .divider { width: 55px; height: 1px; background: var(--blue); margin: 1.5rem auto; }
+    .divider-left { margin-left: 0; }
+
+    /* CAMILLE */
+    .camille { background: var(--softblue); }
+    .camille-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+      align-items: center; margin-top: 3rem;
+    }
+    .camille-img { width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 2px; }
+    .camille-stats {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 2rem 0;
+    }
+    .stat-card {
+      background: white; padding: 1.25rem; text-align: center;
+      border-radius: 4px; box-shadow: 0 2px 12px rgba(45,58,74,0.06);
+    }
+    .stat-icon { font-size: 1.8rem; margin-bottom: 0.5rem; }
+    .stat-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.25rem; }
+    .stat-value { font-family: 'Gilda Display', serif; font-size: 1.1rem; color: var(--dark); }
+    .camille-text p { font-size: 1rem; line-height: 1.9; color: var(--text); margin-bottom: 1rem; font-weight: 300; }
+
+    /* PARENTS */
+    .parents { background: white; }
+    .parents-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem; }
+    .parent-card {
+      background: var(--pale); padding: 2rem; text-align: center;
+      border-top: 3px solid var(--blue);
+    }
+    .parent-card img {
+      width: 90px; height: 90px; border-radius: 50%; object-fit: cover;
+      margin-bottom: 1rem; border: 3px solid var(--blue);
+    }
+    .parent-card .role {
+      font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 0.5rem;
+    }
+    .parent-card h3 {
+      font-family: 'Gilda Display', serif; font-size: 1.4rem;
+      font-weight: 400; margin-bottom: 0.5rem;
+    }
+    .parent-card p { font-size: 0.88rem; color: var(--text); line-height: 1.65; font-weight: 300; }
+
+    /* PROGRAMME */
+    .programme { background: var(--softblue); }
+    .prog-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 3rem; }
+    .prog-card {
+      background: white; padding: 2rem 1.5rem; text-align: center;
+      border-radius: 4px; box-shadow: 0 2px 15px rgba(45,58,74,0.05);
+    }
+    .prog-icon { font-size: 2.2rem; margin-bottom: 1rem; }
+    .prog-time {
+      font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 0.5rem;
+    }
+    .prog-card h3 {
+      font-family: 'Gilda Display', serif; font-size: 1.2rem;
+      font-weight: 400; margin-bottom: 0.75rem;
+    }
+    .prog-card p { font-size: 0.88rem; color: var(--text); line-height: 1.65; font-weight: 300; }
+
+    /* GALERIE */
+    .galerie { background: var(--white); }
+    .gallery-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 0.6rem; margin-top: 3rem; }
+    .gallery-wrap { overflow: hidden; border-radius: 2px; }
+    .gallery-grid img {
+      width: 100%; aspect-ratio: 1; object-fit: cover;
+      transition: transform 0.45s ease; display: block;
+    }
+    .gallery-grid img:hover { transform: scale(1.06); }
+    .gallery-note {
+      text-align: center; margin-top: 1.5rem; font-size: 0.88rem;
+      color: var(--text); font-style: italic; font-weight: 300;
+    }
+
+    /* COUNTDOWN */
+    .countdown { background: var(--dark); color: white; text-align: center; }
+    .countdown .section-title { color: white; }
+    .countdown-grid {
+      display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem;
+      margin: 3rem auto 0; max-width: 540px;
+    }
+    .countdown-item { display: flex; flex-direction: column; align-items: center; }
+    .countdown-number {
+      font-family: 'Gilda Display', serif;
+      font-size: clamp(2.8rem, 7vw, 5rem); font-weight: 400; line-height: 1; color: var(--blue);
+    }
+    .countdown-label {
+      font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase;
+      margin-top: 0.5rem; opacity: 0.6;
+    }
+
+    /* RSVP */
+    .rsvp { background: white; }
+    .rsvp-form { max-width: 560px; margin: 3rem auto 0; }
+    .form-group { margin-bottom: 1.4rem; }
+    .form-group label {
+      display: block; font-size: 0.68rem; letter-spacing: 0.2em;
+      text-transform: uppercase; margin-bottom: 0.5rem; font-weight: 500;
+    }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%; padding: 0.9rem 1rem; border: 1px solid #D8E8F0;
+      background: var(--pale); font-family: 'Nunito', sans-serif; font-size: 0.95rem;
+      font-weight: 300; color: var(--dark); outline: none; transition: border-color 0.3s;
+      appearance: none;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      border-color: var(--accent);
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group textarea { height: 110px; resize: vertical; }
+    .form-submit {
+      width: 100%; padding: 1.1rem; background: var(--accent); color: white;
+      border: none; font-family: 'Nunito', sans-serif; font-size: 0.7rem; font-weight: 500;
+      letter-spacing: 0.28em; text-transform: uppercase; cursor: pointer;
+      transition: background 0.3s;
+    }
+    .form-submit:hover { background: var(--dark); }
+
+    /* FOOTER */
+    footer { background: var(--dark); color: white; text-align: center; padding: 3.5rem 2rem; }
+    footer h2 {
+      font-family: 'Gilda Display', serif; font-size: 2.2rem;
+      font-weight: 400; margin-bottom: 0.75rem;
+    }
+    footer p { font-size: 0.85rem; opacity: 0.7; margin-bottom: 0.4rem; line-height: 1.7; font-weight: 300; }
+    footer .credit {
+      margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.72rem; opacity: 0.5;
+    }
+    footer .credit a { color: var(--blue); text-decoration: none; }
+
+    .fade-in { opacity: 0; transform: translateY(28px); transition: opacity 0.75s ease, transform 0.75s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 768px) {
+      .camille-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .camille-img { display: none; }
+      .parents-grid { grid-template-columns: 1fr; }
+      .prog-cards { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: repeat(2,1fr); }
+      .countdown-grid { grid-template-columns: repeat(2,1fr); gap: 1.5rem; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="navbar">
+    <a href="#camille">Camille</a>
+    <a href="#programme">Baptême</a>
+    <a href="#galerie">Photos</a>
+    <a href="#rsvp">RSVP</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-eyebrow">Nous avons la joie de vous annoncer</div>
+    <h1>Bienvenue<br>Camille</h1>
+    <div class="hero-sub">née le 3 mars 2026</div>
+    <div class="hero-date">Baptême le 14 Juin 2026 &nbsp;·&nbsp; Église Saint-Pierre-le-Vieux, Strasbourg</div>
+    <a href="#rsvp" class="btn">Confirmer votre présence</a>
+  </section>
+
+  <!-- CAMILLE -->
+  <section class="camille" id="camille">
+    <div class="container">
+      <div class="section-label">La petite dernière</div>
+      <h2 class="section-title">Camille est arrivée</h2>
+      <div class="divider divider-left"></div>
+      <div class="camille-grid fade-in">
+        <img src="https://images.unsplash.com/photo-1491013516836-7db643ee125a?auto=format&fit=crop&w=700&q=875" alt="Bébé Camille" class="camille-img">
+        <div>
+          <div class="camille-stats">
+            <div class="stat-card">
+              <div class="stat-icon">🌱</div>
+              <div class="stat-label">Naissance</div>
+              <div class="stat-value">3 mars 2026</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">⚖️</div>
+              <div class="stat-label">Poids</div>
+              <div class="stat-value">3,4 kg</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">📏</div>
+              <div class="stat-label">Taille</div>
+              <div class="stat-value">51 cm</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">💙</div>
+              <div class="stat-label">Yeux</div>
+              <div class="stat-value">Bleus</div>
+            </div>
+          </div>
+          <div class="camille-text">
+            <p>Le 3 mars 2026, à 4h17 du matin, notre vie a basculé dans le meilleur sens du terme. Camille est arrivée dans le monde avec une petite bouille ronde et un caractère déjà bien affirmé.</p>
+            <p>Elle aime les câlins, le son de la pluie sur la fenêtre, et a déjà manifesté une opinion très claire sur l'heure de ses repas.</p>
+            <p>Le 14 juin, nous souhaitons célébrer son baptême entourés de tous ceux qui l'aimeront — c'est-à-dire vous.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARENTS -->
+  <section class="parents">
+    <div class="container" style="text-align:center">
+      <div class="section-label">La famille</div>
+      <h2 class="section-title">Ses parents</h2>
+      <div class="divider"></div>
+      <div class="parents-grid fade-in">
+        <div class="parent-card">
+          <img src="https://i.pravatar.cc/200?img=45" alt="Elise">
+          <div class="role">Maman</div>
+          <h3>Élise</h3>
+          <p>Infirmière de nuit reconvertie en spécialiste du groin-groin depuis mars. Elle dort peu mais sourit beaucoup.</p>
+        </div>
+        <div class="parent-card">
+          <img src="https://i.pravatar.cc/200?img=62" alt="Antoine">
+          <div class="role">Papa</div>
+          <h3>Antoine</h3>
+          <p>Chef de projet le jour, expert en berceuses improvisées la nuit. A déjà regardé dormir Camille pendant 3h.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRAMME -->
+  <section class="programme" id="programme">
+    <div class="container" style="text-align:center">
+      <div class="section-label">Le 14 juin</div>
+      <h2 class="section-title">Programme du baptême</h2>
+      <div class="divider"></div>
+      <div class="prog-cards fade-in">
+        <div class="prog-card">
+          <div class="prog-icon">⛪</div>
+          <div class="prog-time">10h30</div>
+          <h3>Cérémonie du baptême</h3>
+          <p>Église Saint-Pierre-le-Vieux<br>Place Saint-Pierre-le-Vieux, Strasbourg<br>Durée approximative : 1h</p>
+        </div>
+        <div class="prog-card">
+          <div class="prog-icon">🌸</div>
+          <div class="prog-time">12h30</div>
+          <h3>Apéritif &amp; photos</h3>
+          <p>Jardin de la famille Moreau<br>Lingolsheim — photobooth disponible<br>pour des souvenirs inoubliables 📸</p>
+        </div>
+        <div class="prog-card">
+          <div class="prog-icon">🍰</div>
+          <div class="prog-time">14h00</div>
+          <h3>Déjeuner en famille</h3>
+          <p>Buffet maison avec les spécialités d'Élise. Gâteau de baptême créé par la marraine.
+          Ambiance douce et familiale.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALERIE -->
+  <section class="galerie" id="galerie">
+    <div class="container" style="text-align:center">
+      <div class="section-label">Ses premiers instants</div>
+      <h2 class="section-title">Galerie photos</h2>
+      <div class="divider"></div>
+      <div class="gallery-grid fade-in">
+        <div class="gallery-wrap"><img src="https://picsum.photos/seed/cm1/600/600" alt="Camille 1" loading="lazy"></div>
+        <div class="gallery-wrap"><img src="https://picsum.photos/seed/cm2/600/600" alt="Camille 2" loading="lazy"></div>
+        <div class="gallery-wrap"><img src="https://picsum.photos/seed/cm3/600/600" alt="Camille 3" loading="lazy"></div>
+        <div class="gallery-wrap"><img src="https://picsum.photos/seed/cm4/600/600" alt="Camille 4" loading="lazy"></div>
+        <div class="gallery-wrap"><img src="https://picsum.photos/seed/cm5/600/600" alt="Camille 5" loading="lazy"></div>
+        <div class="gallery-wrap"><img src="https://picsum.photos/seed/cm6/600/600" alt="Camille 6" loading="lazy"></div>
+      </div>
+      <p class="gallery-note">📸 Les photos du photobooth du baptême apparaîtront ici !</p>
+    </div>
+  </section>
+
+  <!-- COUNTDOWN -->
+  <section class="countdown">
+    <div class="container">
+      <div class="section-label" style="color:var(--blue)">Le baptême dans</div>
+      <h2 class="section-title">On compte les dodos</h2>
+      <div class="countdown-grid">
+        <div class="countdown-item">
+          <span class="countdown-number" id="days">--</span>
+          <span class="countdown-label">Jours</span>
+        </div>
+        <div class="countdown-item">
+          <span class="countdown-number" id="hours">--</span>
+          <span class="countdown-label">Heures</span>
+        </div>
+        <div class="countdown-item">
+          <span class="countdown-number" id="minutes">--</span>
+          <span class="countdown-label">Minutes</span>
+        </div>
+        <div class="countdown-item">
+          <span class="countdown-number" id="seconds">--</span>
+          <span class="countdown-label">Secondes</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RSVP -->
+  <section class="rsvp" id="rsvp">
+    <div class="container" style="text-align:center">
+      <div class="section-label">Vous êtes les bienvenus</div>
+      <h2 class="section-title">Confirmer votre présence</h2>
+      <div class="divider"></div>
+      <p style="color:var(--text);font-weight:300;margin-bottom:0.5rem">Merci de nous répondre avant le <strong>15 mai 2026</strong></p>
+      <div id="rsvp-form-wrapper">
+        <form class="rsvp-form" onsubmit="handleRSVP(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Prénom</label>
+              <input type="text" placeholder="Claire" required>
+            </div>
+            <div class="form-group">
+              <label>Nom</label>
+              <input type="text" placeholder="Bernard" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" placeholder="claire@exemple.fr" required>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Présence</label>
+              <select required>
+                <option value="">Sélectionner...</option>
+                <option>Oui, avec joie ! 🌸</option>
+                <option>Non, malheureusement</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Nombre de personnes</label>
+              <select>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>Famille (4+)</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Enfants présents ?</label>
+            <select>
+              <option>Non</option>
+              <option>Oui – 1 enfant</option>
+              <option>Oui – 2 enfants</option>
+              <option>Oui – 3 enfants ou plus</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Un mot pour Camille (optionnel)</label>
+            <textarea placeholder="Un vœu, un message pour ce beau jour..."></textarea>
+          </div>
+          <button type="submit" class="form-submit">Envoyer ma réponse</button>
+          <p style="text-align:center;font-size:0.82rem;color:var(--text);margin-top:1rem;font-weight:300">Date limite : 15 mai 2026</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <h2>Bienvenue Camille 💙</h2>
+    <p>Baptême le 14 juin 2026 &nbsp;·&nbsp; Strasbourg &amp; Lingolsheim</p>
+    <p>Questions ? <a href="mailto:bapteme.camille@gmail.com" style="color:var(--blue)">bapteme.camille@gmail.com</a></p>
+    <div class="credit">
+      Site événementiel créé avec ♥ par <a href="https://lemomentsupreme.fr" target="_blank">Le Moment Suprême</a>
+    </div>
+  </footer>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 80); });
+
+    const target = new Date('2026-06-14T10:30:00');
+    function tick() {
+      const diff = target - new Date();
+      if (diff <= 0) { ['days','hours','minutes','seconds'].forEach(id => document.getElementById(id).textContent = '0'); return; }
+      document.getElementById('days').textContent = Math.floor(diff / 86400000);
+      document.getElementById('hours').textContent = String(Math.floor(diff % 86400000 / 3600000)).padStart(2,'0');
+      document.getElementById('minutes').textContent = String(Math.floor(diff % 3600000 / 60000)).padStart(2,'0');
+      document.getElementById('seconds').textContent = String(Math.floor(diff % 60000 / 1000)).padStart(2,'0');
+    }
+    tick(); setInterval(tick, 1000);
+
+    const io = new IntersectionObserver(e => e.forEach(el => { if(el.isIntersecting) el.target.classList.add('visible'); }), { threshold: 0.08 });
+    document.querySelectorAll('.fade-in').forEach(el => io.observe(el));
+
+    function handleRSVP(e) {
+      e.preventDefault();
+      document.getElementById('rsvp-form-wrapper').innerHTML =
+        '<div style="padding:3rem 1rem;text-align:center"><p style="font-family:\'Gilda Display\',serif;font-size:2rem;color:var(--accent);margin-bottom:1rem">Merci !</p><p style="color:var(--text);font-size:1rem;line-height:1.8;font-weight:300">Votre réponse a bien été enregistrée. 🌸<br>Élise, Antoine et Camille ont hâte de vous voir !</p></div>';
+    }
+  </script>
+</body>
+</html>
